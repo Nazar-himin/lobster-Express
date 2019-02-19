@@ -28,10 +28,9 @@ window.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
             let item = products[i].cloneNode(true),
                 trigger = item.querySelector('button'),
-                removeBtn = document.createElement('div'),
-                empty = cartWrapper.querySelector('.empty');
-                
-            trigger.remove();
+                removeBtn = document.createElement('div');
+                //empty = cartWrapper.querySelector('.empty');
+                trigger.remove();
 
             showConfirm();
             calcGoods(1);
@@ -41,10 +40,11 @@ window.addEventListener('DOMContentLoaded', () => {
             item.appendChild(removeBtn);
             
             cartWrapper.appendChild(item);
-            if (empty) {
-                empty.remove();
-            }
+            // if (empty) {
+            //     empty.style.display = 'none';
+            // } 
 
+            
             calcTotal();
             removeFromCart();
         });
@@ -80,7 +80,14 @@ window.addEventListener('DOMContentLoaded', () => {
     
     function calcGoods(i) {
         const items = cartWrapper.querySelectorAll('.goods__item');
+        let empty = cartWrapper.querySelector('.empty');
         badge.textContent = i + items.length;
+        
+        if(items.length === 0) {
+            empty.style.display = 'block';
+        } else {
+            empty.style.display = 'none';
+        }
     }
 
     function calcTotal() {
@@ -97,6 +104,8 @@ window.addEventListener('DOMContentLoaded', () => {
         removeBtn.forEach(function(btn) {
             btn.addEventListener('click', () => {
                 btn.parentElement.remove();
+
+               
                 calcGoods(0);
                 calcTotal();
             });
