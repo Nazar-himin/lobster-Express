@@ -21,8 +21,8 @@ window.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = '';
     }
     
-    open.addEventListener('click', openCart);
-    close.addEventListener('click', closeCart);
+        open.addEventListener('click', openCart);
+        close.addEventListener('click', closeCart);
     
     goodsBtn.forEach(function(btn, i) {
         btn.addEventListener('click', () => {
